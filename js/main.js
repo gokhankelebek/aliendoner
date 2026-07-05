@@ -21,6 +21,15 @@
     if (now - lastTouchEnd <= 300) e.preventDefault();
     lastTouchEnd = now;
   }, { passive: false });
+  // Chrome/Firefox: trackpad pinch & ctrl+scroll zoom fire wheel with ctrlKey.
+  // (Normal scroll has ctrlKey false, so it's untouched.)
+  document.addEventListener("wheel", (e) => {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
+  // Keyboard zoom: Ctrl/Cmd + (+ / - / = / 0)
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && ["+", "-", "=", "0"].includes(e.key)) e.preventDefault();
+  });
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
