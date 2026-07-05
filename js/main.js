@@ -4,6 +4,24 @@
 (() => {
   "use strict";
 
+  /* ---------- block pinch / double-tap zoom (iOS Safari ignores the
+     viewport meta, so we stop the gestures directly) ---------- */
+  // Safari-specific pinch gesture events
+  ["gesturestart", "gesturechange", "gestureend"].forEach((evt) => {
+    document.addEventListener(evt, (e) => e.preventDefault(), { passive: false });
+  });
+  // Two-finger pinch on touch devices (single-finger scroll stays unaffected)
+  document.addEventListener("touchmove", (e) => {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  // Double-tap to zoom
+  let lastTouchEnd = 0;
+  document.addEventListener("touchend", (e) => {
+    const now = performance.now();
+    if (now - lastTouchEnd <= 300) e.preventDefault();
+    lastTouchEnd = now;
+  }, { passive: false });
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- starfield canvas ---------- */
