@@ -1,0 +1,13 @@
+# Vercel
+.vercel
+
+# macOS
+.DS_Store
+
+# Claude Code
+.claude/
+
+# Editor / OS junk
+*.swp
+*.log
+node_modules/
