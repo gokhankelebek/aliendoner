@@ -73,8 +73,10 @@
         },
         "geo": { "@type": "GeoCoordinates", "latitude": 33.6386, "longitude": -117.9264 },
         "openingHoursSpecification": [
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "11:00", "closes": "23:59" },
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "11:00", "closes": "02:00" }
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday"], "opens": "11:30", "closes": "23:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:30", "closes": "23:59" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "12:00", "closes": "23:59" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "23:00" }
         ],
         "sameAs": ["https://www.yelp.com/biz/alien-doner-costa-mesa-5"]
       },
@@ -306,15 +308,18 @@
           <h3>Costa Mesa</h3>
           <p class="loc-addr">560 W 19th St, Ste C<br>Costa Mesa, CA 92627</p>
           <dl class="loc-hours">
-            <div><dt>Sun – Thu</dt><dd>11:00 AM – 12:00 AM</dd></div>
-            <div><dt>Fri – Sat</dt><dd>11:00 AM – 2:00 AM</dd></div>
+            <div><dt>Tue – Thu</dt><dd>11:30 AM – 11:00 PM</dd></div>
+            <div><dt>Friday</dt><dd>11:30 AM – 12:00 AM</dd></div>
+            <div><dt>Saturday</dt><dd>12:00 PM – 12:00 AM</dd></div>
+            <div><dt>Sunday</dt><dd>12:00 PM – 11:00 PM</dd></div>
+            <div><dt>Monday</dt><dd>Closed</dd></div>
           </dl>
           <p class="loc-phone"><a href="tel:+19498736637">(949) 873-6637</a></p>
           <div class="loc-actions">
             <a class="btn btn-primary" href="https://order.thisway.co/alien-doner-costa-mesa" target="_blank" rel="noopener">Order Online</a>
             <a class="btn btn-ghost" href="/costa-mesa.html">Location details →</a>
           </div>
-          <span class="loc-note">Open late — the mothership never sleeps early.</span>
+          <span class="loc-note">Open till midnight on weekends · closed Mondays.</span>
         </article>
         <article class="loc-card reveal">
           <h3>Lake Forest</h3>
