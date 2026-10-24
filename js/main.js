@@ -31,6 +31,25 @@
     if ((e.ctrlKey || e.metaKey) && ["+", "-", "=", "0"].includes(e.key)) e.preventDefault();
   });
 
+  /* ---------- GA4 conversion clicks (calls, directions, online orders).
+     Delegated so it covers every page; never blocks the navigation. ---------- */
+  document.addEventListener("click", (e) => {
+    if (!(e.target instanceof Element) || typeof window.gtag !== "function") return;
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const url = new URL(a.href, location.href);
+    if (url.protocol === "tel:") {
+      window.gtag("event", "click_to_call", { link_url: a.href });
+    } else if (url.hostname === "order.thisway.co") {
+      // location from the store slug: alien-doner-costa-mesa / alien-doner-lake-forest
+      const location = url.pathname.replace(/^\/alien-doner-/, "").replace(/\/.*$/, "");
+      window.gtag("event", "order_online_click", { platform: "thisway", location, link_url: a.href });
+    } else if (url.hostname === "maps.google.com" ||
+               (/^(www\.)?google\.com$/.test(url.hostname) && url.pathname.startsWith("/maps"))) {
+      window.gtag("event", "get_directions", { link_url: a.href });
+    }
+  }, { capture: true, passive: true });
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- starfield canvas ---------- */
